@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Sentiment Analysis</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        
+        input[type="text"] {
+            font-size: 16px;
+            padding: 10px;
+            border: 3px solid #ccc;
+            border-radius: 10px;
+            width: 300px;
+        }
+        
+        button[type="submit"] {
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+        }
+        
+        text {
+            font-size: 20px;
+            font-weight: bold;
+            color: #000000;
+        }
+        
+        form {
+            padding-top: 50px;
+        }
+        #result {
+            padding: 20px;
+            border: #000000 0px solid;
+            color: black; /* Set text color for result div to white */
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <form action="/classify" method="post">
+            <input type="text" placeholder="Enter text.." id="text" name="text" required>
+            <br/><br/><br/>
+            <button type="submit" 
+                onmouseover="this.style.backgroundColor='#0056b3'" 
+                onmouseout="this.style.backgroundColor='#007BFF'">
+                Classify
+            </button>
+        </form>
+        <br/><br/><br/>
+        <div id="result"></div>
+    </center>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <script>
+        const resultDiv = document.getElementById('result');
+        resultDiv.addEventListener('DOMNodeInserted', () => {
+                resultDiv.style.border = '#000000 3px solid';
+                resultDiv.style.borderRadius = '10px';
+            });
+
+            resultDiv.addEventListener('DOMNodeRemoved', () => {
+                resultDiv.style.border = '#000000 0px solid';
+                resultDiv.style.borderRadius = '0px';
+            });
+    </script>
+</body>
+</html>
